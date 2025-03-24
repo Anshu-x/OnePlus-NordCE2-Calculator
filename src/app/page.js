@@ -99,7 +99,7 @@ export default function Home() {
             </button>
             <button
               onClick={() => {
-                setSolve(solve / 100 + "*");
+                setSolve(solve + "%");
               }}
               className="m-2 w-12 md:w-20 h-12 md:h-20 rounded-full bg-gray-700 hover:bg-gray-600 transition-all duration-500"
             >
