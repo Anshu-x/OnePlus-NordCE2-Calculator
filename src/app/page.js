@@ -43,44 +43,35 @@ export default function Home() {
     },
   ];
 
-  // const cacluatePercentage = () => {
-  //   let arr = solve.split("%");
-  //   let x = 1;
-  //   for (let i = 0; i < arr.length; i++) {
-  //     arr[i] = arr[i] / 100;
-  //     setSolve(solve + "" + arr[i]);
-  //   }
-  // };
-
   return (
-    <main className="pt-24 pb-20 flex w-full items-center justify-center h-screen bg-[#ffb515]">
+    <main className="pt-24 pb-20 flex w-full items-center justify-center h-screen bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
       <div className="mx-auto w-[320px] md:w-[420px] bg-black pb-5 overflow-hidden shadow-2xl shadow-[#000000] rounded-3xl">
-        <div className=" bg-[#808080] rounded-b-3xl w-full h-[200px] md:h-[250px] overflow-y-hidden overflow-x-auto flex justify-end items-end p-5 text-4xl font-[600] relative">
+        <div className="bg-gray-800 rounded-b-3xl w-full h-[200px] md:h-[250px] overflow-y-hidden overflow-x-auto flex justify-end items-end p-5 text-4xl font-semibold relative">
           <p
             className={
               solve?.length
-                ? "absolute top-5 left-5 font-[300] scale-y-0 transition-all duration-500"
-                : "absolute top-5 left-5 font-[300] transition-all duration-500"
+                ? "absolute top-5 left-5 font-light scale-y-0 transition-all duration-500"
+                : "absolute top-5 left-5 font-light transition-all duration-500"
             }
           >
             Calculator
           </p>
           <span className={solve?.length > 16 ? "text-xl" : ""}>{solve}</span>
         </div>
-        <div className="w-full flex px-[10px] py-5 items-start text-white font-[600] text-3xl">
-          <div className="w-[80%] flex items-center flex-wrap">
+        <div className="w-full flex px-4 py-5 items-start text-white font-semibold text-3xl">
+          <div className="w-4/5 flex items-center flex-wrap">
             <button
               onClick={() => {
                 setSolve("");
                 setCount(0);
               }}
-              className="m-[10px] w-[50px] md:w-[80px] h-[50px] md:h-[80px] rounded-full hover:bg-[#3e3e3e] transition-all duration-500"
+              className="m-2 w-12 md:w-20 h-12 md:h-20 rounded-full bg-gray-700 hover:bg-gray-600 transition-all duration-500"
             >
               AC
             </button>
             <button
               onClick={clear}
-              className="m-[10px] w-[50px] md:w-[80px] h-[50px] md:h-[80px] rounded-full hover:bg-[#3e3e3e] transition-all duration-500 flex items-center justify-center text-3xl"
+              className="m-2 w-12 md:w-20 h-12 md:h-20 rounded-full bg-gray-700 hover:bg-gray-600 transition-all duration-500 flex items-center justify-center text-3xl"
             >
               <FaBackspace />
             </button>
@@ -88,7 +79,7 @@ export default function Home() {
               onClick={() => {
                 setSolve(solve / 100 + "*");
               }}
-              className="m-[10px] w-[50px] md:w-[80px] h-[50px] md:h-[80px] rounded-full hover:bg-[#3e3e3e] transition-all duration-500"
+              className="m-2 w-12 md:w-20 h-12 md:h-20 rounded-full bg-gray-700 hover:bg-gray-600 transition-all duration-500"
             >
               %
             </button>
@@ -128,7 +119,7 @@ export default function Home() {
                     }
                   }}
                   key={index}
-                  className="m-[10px] w-[50px] md:w-[80px] h-[50px] md:h-[80px] rounded-full hover:bg-[#3e3e3e] transition-all duration-500"
+                  className="m-2 w-12 md:w-20 h-12 md:h-20 rounded-full bg-gray-700 hover:bg-gray-600 transition-all duration-500"
                 >
                   {num}
                 </button>
@@ -168,7 +159,7 @@ export default function Home() {
                     setSolve(arr.join(""));
                   }
                 }}
-                className="m-[10px] w-[50px] md:w-[80px] h-[50px] bg-[#3e3e3e] flex text-4xl items-center justify-center md:h-[80px] rounded-full"
+                className="m-2 w-12 md:w-20 h-12 md:h-20 bg-gray-700 hover:bg-gray-600 transition-all duration-500 flex text-4xl items-center justify-center rounded-full"
               >
                 {op.icon}
               </button>
@@ -195,7 +186,7 @@ export default function Home() {
                   alert("Invalid input operation!");
                 }
               }}
-              className="m-[10px] w-[50px] md:w-[80px] h-[50px] bg-orange-500 flex items-center justify-center md:h-[80px] rounded-full"
+              className="m-2 w-12 md:w-20 h-12 md:h-20 bg-orange-500 hover:bg-orange-400 transition-all duration-500 flex items-center justify-center rounded-full"
             >
               <FaEquals />
             </button>
