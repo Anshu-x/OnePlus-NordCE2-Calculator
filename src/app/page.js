@@ -9,10 +9,10 @@ import { RiDivideLine } from "react-icons/ri";
 
 export default function Home() {
   const numbers = ["00", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "."];
-
   const [solve, setSolve] = useState("");
   const [count, setCount] = useState(0);
   const [isSolved, setIsSolved] = useState(false);
+  const [history, setHistory] = useState([]);
 
   var result = null;
   const clear = async () => {
@@ -42,6 +42,28 @@ export default function Home() {
       value: "+",
     },
   ];
+
+  const handleEquals = () => {
+    let arr = solve.toString().split("");
+    try {
+      if (
+        arr[arr.length - 1] !== "+" &&
+        arr[arr.length - 1] !== "-" &&
+        arr[arr.length - 1] !== "*" &&
+        arr[arr.length - 1] !== "/" &&
+        solve?.length > 0
+      ) {
+        setIsSolved(true);
+        result = eval(solve);
+        setHistory([...history, { expression: solve, result: result.toString() }]);
+        setSolve(result.toString());
+      } else {
+        alert("Invalid input operation!");
+      }
+    } catch (err) {
+      alert("Invalid input operation!");
+    }
+  };
 
   return (
     <main className="pt-24 pb-20 flex w-full items-center justify-center h-screen bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
@@ -166,31 +188,22 @@ export default function Home() {
             ))}
 
             <button
-              onClick={() => {
-                let arr = solve.toString().split("");
-                try {
-                  if (
-                    arr[arr.length - 1] !== "+" &&
-                    arr[arr.length - 1] !== "-" &&
-                    arr[arr.length - 1] !== "*" &&
-                    arr[arr.length - 1] !== "/" &&
-                    solve?.length > 0
-                  ) {
-                    setIsSolved(true);
-                    result = eval(solve);
-                    setSolve(result.toString());
-                  } else {
-                    alert("Invalid input operation!");
-                  }
-                } catch (err) {
-                  alert("Invalid input operation!");
-                }
-              }}
+              onClick={handleEquals}
               className="m-2 w-12 md:w-20 h-12 md:h-20 bg-orange-500 hover:bg-orange-400 transition-all duration-500 flex items-center justify-center rounded-full"
             >
               <FaEquals />
             </button>
           </div>
+        </div>
+        <div className="bg-gray-900 p-4 rounded-b-3xl text-white">
+          <h3 className="text-lg font-semibold">History</h3>
+          <ul className="list-disc pl-5">
+            {history.map((item, index) => (
+              <li key={index}>
+                {item.expression} = {item.result}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </main>
